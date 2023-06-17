@@ -14,7 +14,7 @@ const featuredTitles1 = [womenDress, girlDress, girlsWatch];
 const featuredTitles2 = [boysGlasses, mobilePhone, tShirts];
 
 const categoryList = [
-  womenDress,
+  womenClothing,
   menClothing,
   compAccess,
   automobile,
@@ -43,3 +43,6 @@ const itemDetailButtonList = [
   returnPolicy,
   supportPolicy
 ];
+
+const profileButtonList = [orders, wishlist, messages];
+const profileButtonIcons = [icOrders, icOrder, icMessages];

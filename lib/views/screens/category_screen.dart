@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/consts/consts.dart';
+import 'package:ecommerce_app/controllers/product_controller.dart';
 import 'package:ecommerce_app/views/screens/category_details.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +10,7 @@ class CatergoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(PRoductController());
     return backGroundWidget(
       child: Scaffold(
         appBar: AppBar(
@@ -48,6 +50,7 @@ class CatergoryScreen extends StatelessWidget {
                   .outerShadowMd
                   .make()
                   .onTap(() {
+                controller.getSubCategoies(categoryList[index]);
                 Get.to(
                   () => CategoryDetails(title: categoryList[index]),
                 );

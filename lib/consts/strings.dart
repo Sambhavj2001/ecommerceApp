@@ -7,6 +7,7 @@ const password = 'Password';
 const passwordHint = 'Roaster@123';
 const forgetPass = 'Forget Password ?';
 const login = 'Log In';
+const logout = 'Log Out';
 const sigup = 'Sign Up';
 const createNewAccount = 'or, Create a new Account';
 const loginWith = 'Log In with';
@@ -16,6 +17,8 @@ const resetPass = 'Reset PassWord';
 const retypePass = 'Retype your Password';
 const privacyPolicy = 'Privacy Policy';
 const termAndCond = 'Terms & Conditions';
+const loggedIn = 'Logded In Successfully';
+const logdedOut = 'Logged Out Successfully';
 
 const home = 'Home',
     categories = 'Categories',
@@ -36,14 +39,14 @@ const searchAnything = 'Search Anything you like ...',
     girlDress = 'Girls Dresses',
     featuredCategory = 'FeaturedCategories';
 
-const womenClothing = 'Women Clothing',
+const womenClothing = 'Women Dress',
     menClothing = 'Men Clothing & Fashion',
     compAccess = 'Computer & Accessories',
     automobile = 'AutoMobile',
-    kidToys = 'Kid\'s Toys',
+    kidToys = 'Kids & Toys',
     sports = 'Sports',
     jewelery = 'Jewelery',
-    cellphone = 'Cellphone & Tab\'s',
+    cellphone = 'Cellphone & Tab',
     furniture = 'Furniture';
 
 const video = 'Video',
@@ -52,3 +55,9 @@ const video = 'Video',
     returnPolicy = 'Return Policy',
     supportPolicy = 'Support Policy',
     productyoualsolike = 'Product\'s you also like';
+
+const wishlist = 'My WishList',
+    orders = 'My Orders',
+    messages = 'Messages',
+    oldpass = 'Old Password',
+    newpass = 'New Password';
