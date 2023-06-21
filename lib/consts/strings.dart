@@ -61,3 +61,5 @@ const wishlist = 'My WishList',
     messages = 'Messages',
     oldpass = 'Old Password',
     newpass = 'New Password';
+
+const paypal = 'Paypal', rozarPay = 'Rozarpay', cod = 'Cash On Delivery';

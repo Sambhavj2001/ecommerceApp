@@ -1,7 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/consts/consts.dart';
 import 'package:ecommerce_app/helper_widgets/background.dart';
 import 'package:ecommerce_app/helper_widgets/featured_button.dart';
 import 'package:ecommerce_app/helper_widgets/home_button.dart';
+import 'package:ecommerce_app/helper_widgets/loading_indicator.dart';
+import 'package:ecommerce_app/services/firebase_services.dart';
+import 'package:ecommerce_app/views/screens/item_details.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -233,50 +238,69 @@ class HomeScreen extends StatelessWidget {
 
                     //product section
                     20.heightBox,
-                    GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: 6,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisExtent: 300,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
-                      ),
-                      itemBuilder: (context, index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              imgP5,
-                              height: 200,
-                              width: 200,
-                              fit: BoxFit.cover,
-                            ),
-                            Spacer(),
-                            'Laptop 4GB/64GB'
-                                .text
-                                .fontFamily(semibold)
-                                .color(darkFontGrey)
-                                .make(),
-                            10.heightBox,
-                            '\$600'
-                                .text
-                                .size(16)
-                                .fontFamily(bold)
-                                .color(redColor)
-                                .make(),
-                            10.heightBox,
-                          ],
-                        )
-                            .box
-                            .white
-                            .rounded
-                            .padding(EdgeInsets.all(12))
-                            .margin(EdgeInsets.symmetric(horizontal: 4))
-                            .make();
-                      },
-                    ),
+                    StreamBuilder(
+                        stream: FirestoreServices.allProducts(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (!snapshot.hasData) {
+                            return loadingIndicator();
+                          } else {
+                            var allProductsData = snapshot.data!.docs;
+                            return GridView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: allProductsData.length,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisExtent: 300,
+                                mainAxisSpacing: 8,
+                                crossAxisSpacing: 8,
+                              ),
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.network(
+                                      allProductsData[index]['p_imgs'][0],
+                                      height: 200,
+                                      width: 200,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    Spacer(),
+                                    '${allProductsData[index]['p_name']}'
+                                        .text
+                                        .fontFamily(semibold)
+                                        .color(darkFontGrey)
+                                        .make(),
+                                    10.heightBox,
+                                    '${allProductsData[index]['p_price']}'
+                                        .numCurrency
+                                        .text
+                                        .size(16)
+                                        .fontFamily(bold)
+                                        .color(redColor)
+                                        .make(),
+                                    10.heightBox,
+                                  ],
+                                )
+                                    .box
+                                    .white
+                                    .rounded
+                                    .padding(EdgeInsets.all(12))
+                                    .margin(EdgeInsets.symmetric(horizontal: 4))
+                                    .make()
+                                    .onTap(() {
+                                  Get.to(() => ItemDetails(
+                                        data: allProductsData[index],
+                                        title:
+                                            '${allProductsData[index]['p_name']}',
+                                      ));
+                                });
+                              },
+                            );
+                          }
+                        }),
                   ],
                 ),
               ),

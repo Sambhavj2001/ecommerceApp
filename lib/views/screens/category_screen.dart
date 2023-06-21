@@ -10,7 +10,7 @@ class CatergoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(PRoductController());
+    var controller = Get.put(ProductController());
     return backGroundWidget(
       child: Scaffold(
         appBar: AppBar(

@@ -17,7 +17,7 @@ class CategoryDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<PRoductController>();
+    var controller = Get.find<ProductController>();
 
     return backGroundWidget(
       child: Scaffold(
@@ -113,7 +113,8 @@ class CategoryDetails extends StatelessWidget {
                                 .margin(EdgeInsets.symmetric(horizontal: 4))
                                 .make()
                                 .onTap(() {
-                              Get.to(() => IteamDetails(
+                              controller.checkIfFav(data[index]);
+                              Get.to(() => ItemDetails(
                                     title: '${data[index]['p_name']}',
                                     data: data[index],
                                   ));
